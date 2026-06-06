@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vijay Rajesh – Agentic AI Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #1a1a24;
+    --accent: #7c6fff;
+    --accent2: #a78bfa;
+    --text: #f0eeff;
+    --muted: #8b88a8;
+    --border: rgba(124,111,255,0.15);
+    --card: rgba(255,255,255,0.03);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  .noise {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.4;
+  }
+  .glow {
+    position: fixed; width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,111,255,0.08) 0%, transparent 70%);
+    top: -200px; left: -100px; pointer-events: none; z-index: 0;
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--accent2); letter-spacing: -0.02em; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    background: var(--accent); color: #fff; border: none; padding: 0.5rem 1.2rem;
+    border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 0.875rem;
+    font-weight: 500; cursor: pointer; transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+  main { position: relative; z-index: 1; }
+  section { padding: 6rem 3rem; max-width: 1100px; margin: 0 auto; }
+
+  /* HERO */
+  .hero { padding-top: 10rem; padding-bottom: 5rem; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(124,111,255,0.1); border: 1px solid var(--border);
+    border-radius: 100px; padding: 0.35rem 1rem; font-size: 0.8rem;
+    color: var(--accent2); margin-bottom: 2rem;
+  }
+  .dot { width: 6px; height: 6px; background: #4ade80; border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+  .hero h1 {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(2.8rem, 6vw, 5rem); line-height: 1.05;
+    letter-spacing: -0.03em; margin-bottom: 1.5rem;
+  }
+  .hero h1 span { color: var(--accent2); }
+  .hero-sub {
+    font-size: 1.15rem; color: var(--muted); max-width: 560px;
+    line-height: 1.7; margin-bottom: 2.5rem; font-weight: 300;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent); color: #fff; border: none;
+    padding: 0.75rem 1.75rem; border-radius: 8px;
+    font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.95rem;
+    cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent; color: var(--text);
+    border: 1px solid var(--border); padding: 0.75rem 1.75rem;
+    border-radius: 8px; font-family: 'DM Sans', sans-serif;
+    font-weight: 500; font-size: 0.95rem; cursor: pointer;
+    transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent2); }
+  .stats-row {
+    display: flex; gap: 3rem; margin-top: 4rem; padding-top: 3rem;
+    border-top: 1px solid var(--border); flex-wrap: wrap;
+  }
+  .stat-item {}
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--accent2); }
+  .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 2px; }
+
+  /* SKILLS */
+  .section-label {
+    font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em;
+    color: var(--accent); margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: clamp(1.8rem, 3vw, 2.5rem); margin-bottom: 1rem; letter-spacing: -0.02em;
+  }
+  .section-sub { color: var(--muted); font-size: 1rem; margin-bottom: 3rem; max-width: 500px; }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+  .skill-chip {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1rem; text-align: center;
+    transition: all 0.2s;
+  }
+  .skill-chip:hover { border-color: var(--accent); background: rgba(124,111,255,0.08); transform: translateY(-2px); }
+  .skill-chip i { font-size: 1.5rem; color: var(--accent2); display: block; margin-bottom: 8px; }
+  .skill-chip span { font-size: 0.8rem; color: var(--muted); }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media(max-width:700px){ .projects-grid { grid-template-columns: 1fr; } }
+  .project-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.75rem;
+    transition: all 0.25s; position: relative; overflow: hidden;
+  }
+  .project-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0; transition: opacity 0.25s;
+  }
+  .project-card:hover { border-color: rgba(124,111,255,0.35); transform: translateY(-4px); }
+  .project-card:hover::before { opacity: 1; }
+  .project-card.featured { grid-column: 1 / -1; }
+  .project-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: rgba(124,111,255,0.15); display: flex;
+    align-items: center; justify-content: center; margin-bottom: 1.25rem;
+  }
+  .project-icon i { font-size: 1.3rem; color: var(--accent2); }
+  .project-tag {
+    display: inline-block; background: rgba(124,111,255,0.12);
+    color: var(--accent2); font-size: 0.7rem; padding: 3px 10px;
+    border-radius: 100px; margin-bottom: 0.75rem; font-weight: 500;
+  }
+  .project-card h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; margin-bottom: 0.5rem; }
+  .project-card p { color: var(--muted); font-size: 0.88rem; line-height: 1.6; margin-bottom: 1.25rem; }
+  .tech-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tech-tag {
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+    border-radius: 4px; padding: 3px 8px; font-size: 0.72rem; color: var(--muted);
+  }
+
+  /* EXPERIENCE */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: flex; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--border); }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-left { min-width: 180px; }
+  .timeline-period { font-size: 0.8rem; color: var(--muted); margin-bottom: 4px; }
+  .timeline-company { font-weight: 500; color: var(--accent2); font-size: 0.9rem; }
+  .timeline-right h3 { font-family: 'Syne', sans-serif; font-weight: 600; font-size: 1.05rem; margin-bottom: 0.5rem; }
+  .timeline-right p { color: var(--muted); font-size: 0.88rem; line-height: 1.6; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.2);
+    color: #4ade80; font-size: 0.7rem; padding: 2px 8px; border-radius: 100px; margin-left: 8px;
+  }
+
+  /* CONTACT */
+  .contact-box {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 20px; padding: 3rem; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .contact-box::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center top, rgba(124,111,255,0.08) 0%, transparent 60%);
+  }
+  .contact-box h2 { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; margin-bottom: 1rem; position: relative; }
+  .contact-box p { color: var(--muted); margin-bottom: 2rem; position: relative; }
+  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; position: relative; }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+    color: var(--text); text-decoration: none; padding: 0.6rem 1.2rem;
+    border-radius: 8px; font-size: 0.875rem; transition: all 0.2s; cursor: pointer;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent2); }
+  footer { text-align: center; padding: 2rem; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--border); }
+</style>
+</head>
+<body>
+<div class="noise"></div>
+<div class="glow"></div>
+
+<nav>
+  <div class="nav-logo">VR</div>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Hire Me</button>
+</nav>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">
+      <span class="dot"></span>
+      Available for freelance work
+    </div>
+    <h1>Vijay Rajesh<br><span>Agentic AI</span><br>Engineer</h1>
+    <p class="hero-sub">
+      I build autonomous AI systems that think, act, and adapt. From intelligent lead generation agents to smart city infrastructure — I turn complex problems into working software.
+    </p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
+        <i class="ti ti-code"></i> View My Work
+      </button>
+      <button class="btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+        <i class="ti ti-mail"></i> Get In Touch
+      </button>
+    </div>
+    <div class="stats-row">
+      <div class="stat-item">
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Projects Shipped</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Research Labs</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Problems Solved</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section>
+    <div class="section-label">Tech Stack</div>
+    <h2 class="section-title">Tools I Build With</h2>
+    <p class="section-sub">Specializing in Agentic AI, full-stack development, and intelligent automation systems.</p>
+    <div class="skills-grid">
+      <div class="skill-chip"><i class="ti ti-brain"></i><span>CrewAI</span></div>
+      <div class="skill-chip"><i class="ti ti-robot"></i><span>Google ADK</span></div>
+      <div class="skill-chip"><i class="ti ti-sparkles"></i><span>LiteLLM</span></div>
+      <div class="skill-chip"><i class="ti ti-brand-python"></i><span>Python</span></div>
+      <div class="skill-chip"><i class="ti ti-brand-react"></i><span>React</span></div>
+      <div class="skill-chip"><i class="ti ti-brand-nodejs"></i><span>Node.js</span></div>
+      <div class="skill-chip"><i class="ti ti-database"></i><span>Databases</span></div>
+      <div class="skill-chip"><i class="ti ti-map-2"></i><span>GIS Systems</span></div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">Portfolio</div>
+    <h2 class="section-title">What I've Built</h2>
+    <p class="section-sub">Real products solving real problems — from AI agents to full SaaS platforms.</p>
+    <div class="projects-grid">
+      <div class="project-card featured">
+        <div class="project-icon"><i class="ti ti-target"></i></div>
+        <span class="project-tag">SaaS Product</span>
+        <h3>LeadmateAI</h3>
+        <p>An autonomous AI agent that identifies potential leads, crafts personalized outreach emails, and manages the entire sales pipeline — without human intervention. Built for businesses that want to scale without scaling their sales team.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">CrewAI</span>
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">Email Automation</span>
+          <span class="tech-tag">AI Agent</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-icon"><i class="ti ti-microphone"></i></div>
+        <span class="project-tag">AI Agent</span>
+        <h3>AI Meeting Assistant</h3>
+        <p>Joins live meetings, takes intelligent notes in real-time, and saves full history for later reference. No more manual note-taking.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">Whisper</span>
+          <span class="tech-tag">LLM</span>
+          <span class="tech-tag">Python</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-icon"><i class="ti ti-map-pin"></i></div>
+        <span class="project-tag">Smart City</span>
+        <h3>GIS Intelligence Agent</h3>
+        <p>Geospatial AI agent built at NCAI Smart City Lab for analyzing and acting on geographic data for urban planning.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">GIS</span>
+          <span class="tech-tag">AI Agent</span>
+          <span class="tech-tag">Python</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-icon"><i class="ti ti-school"></i></div>
+        <span class="project-tag">Web App</span>
+        <h3>School Management System</h3>
+        <p>Full-featured school management platform handling students, teachers, attendance, grades, and communication.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">Database</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-icon"><i class="ti ti-file-cv"></i></div>
+        <span class="project-tag">AI Tool</span>
+        <h3>Resume Analyzer</h3>
+        <p>AI-powered resume analysis tool that scores candidates, identifies skill gaps, and provides actionable feedback.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">NLP</span>
+          <span class="tech-tag">Python</span>
+          <span class="tech-tag">LLM</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-icon"><i class="ti ti-shopping-cart"></i></div>
+        <span class="project-tag">E-Commerce</span>
+        <h3>E-commerce Platforms</h3>
+        <p>Multiple full-stack e-commerce platforms with payments, inventory, and admin dashboards for real clients.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">Node.js</span>
+          <span class="tech-tag">Stripe</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-label">Experience</div>
+    <h2 class="section-title">Where I've Worked</h2>
+    <p class="section-sub">Research labs and real-world product companies.</p>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-left">
+          <div class="timeline-period">Feb 2025 – Present</div>
+          <div class="timeline-company">Crop2X</div>
+        </div>
+        <div class="timeline-right">
+          <h3>Software Engineer <span class="badge"><span class="dot" style="width:5px;height:5px;"></span> Active</span></h3>
+          <p>Building intelligent software solutions for agricultural technology, integrating AI systems to optimize crop management and decision-making processes.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-left">
+          <div class="timeline-period">Aug 2024 – Present</div>
+          <div class="timeline-company">NCAI Smart City Lab, NED</div>
+        </div>
+        <div class="timeline-right">
+          <h3>Software Developer <span class="badge"><span class="dot" style="width:5px;height:5px;"></span> Active</span></h3>
+          <p>Developing smart city infrastructure software at Pakistan's National Centre of AI. Building GIS agents, data pipelines, and intelligent urban systems at NED University.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-left">
+          <div class="timeline-period">Oct 2023 – Aug 2024</div>
+          <div class="timeline-company">NCAI, NED University</div>
+        </div>
+        <div class="timeline-right">
+          <h3>Software Developer</h3>
+          <p>Crafted seamless, responsive web and app experiences. Built dynamic front-end interfaces to robust back-end systems — ensuring performance, security, and scalability.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-box">
+      <h2>Let's Build Something</h2>
+      <p>Looking for an AI engineer who ships real products? Let's talk.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:vijay@example.com"><i class="ti ti-mail"></i> Email Me</a>
+        <a class="contact-link" href="https://www.linkedin.com/in/vijay-rajesh-bb57bb298/" target="_blank"><i class="ti ti-brand-linkedin"></i> LinkedIn</a>
+        <a class="contact-link" href="#"><i class="ti ti-brand-github"></i> GitHub</a>
+        <a class="contact-link" href="#"><i class="ti ti-brand-twitter"></i> Twitter/X</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Built by Vijay Rajesh — Agentic AI Engineer, Karachi 🇵🇰
+</footer>
+</body>
+</html>
